@@ -68,8 +68,16 @@ void main() {
     final sm = Smm(initRepetitions, initInterval, initEaseFactor);
     final smResponse = sm.calc(quality);
 
-    expect(smResponse.interval, 8);
-    expect(smResponse.repetitions, 3);
-    expect(smResponse.easeFactor, 1.4000000000000001);
+    final originalSm = Sm();
+
+    SmResponse originalSmResponse = originalSm.calc(
+        quality: quality,
+        repetitions: initRepetitions,
+        previousInterval: initInterval,
+        previousEaseFactor: initEaseFactor);
+
+    expect(smResponse.interval, originalSmResponse.interval);
+    expect(smResponse.repetitions, originalSmResponse.repetitions);
+    expect(smResponse.easeFactor, originalSmResponse.easeFactor);
   });
 }
