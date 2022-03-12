@@ -1,4 +1,4 @@
 library sm2;
 
-export 'sm.dart';
-export 'SmResponse.dart';
+export 'original_sm.dart';
+export 'sm_response.dart';

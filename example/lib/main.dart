@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  final sm = Sm();
+  final sm = OriginalSm();
 
   @override
   @override

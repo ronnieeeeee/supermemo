@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sm2/SmResponse.dart';
+import 'package:sm2/sm_response.dart';
+import 'package:sm2/original_sm.dart';
 import 'package:sm2/sm.dart';
-import 'package:sm2/smm.dart';
 
 void main() {
   test('Calc success', () {
@@ -9,15 +9,15 @@ void main() {
     final int initRepetitions = 0;
     final int initInterval = 0;
     final double initEaseFactor = 2.5;
-    final sm = Smm(initRepetitions, initInterval, initEaseFactor);
+    final sm = SM(initRepetitions, initInterval, initEaseFactor);
 
-    final Smm smResponse = sm.calc(quality);
+    final SM smResponse = sm.calc(quality);
 
     expect(smResponse.interval, 1);
     expect(smResponse.repetitions, 0);
     expect(smResponse.easeFactor, 2.5);
 
-    final originalSm = Sm();
+    final originalSm = OriginalSm();
     SmResponse originalSmResponse = originalSm.calc(
         quality: quality,
         repetitions: initRepetitions,
@@ -35,7 +35,7 @@ void main() {
         previousInterval: originalSmResponse.interval,
         previousEaseFactor: originalSmResponse.easeFactor);
 
-    final smResponse2 = Smm(initRepetitions, initInterval, initEaseFactor)
+    final smResponse2 = SM(initRepetitions, initInterval, initEaseFactor)
         .calc(quality)
         .calc(quality2);
 
@@ -50,7 +50,7 @@ void main() {
         previousInterval: originalSmResponse2.interval,
         previousEaseFactor: originalSmResponse2.easeFactor);
 
-    final smResponse3 = Smm(initRepetitions, initInterval, initEaseFactor)
+    final smResponse3 = SM(initRepetitions, initInterval, initEaseFactor)
         .calc(quality)
         .calc(quality2)
         .calc(quality3);
@@ -65,10 +65,10 @@ void main() {
     final int initRepetitions = 2;
     final int initInterval = 6;
     final double initEaseFactor = 1.3;
-    final sm = Smm(initRepetitions, initInterval, initEaseFactor);
+    final sm = SM(initRepetitions, initInterval, initEaseFactor);
     final smResponse = sm.calc(quality);
 
-    final originalSm = Sm();
+    final originalSm = OriginalSm();
 
     SmResponse originalSmResponse = originalSm.calc(
         quality: quality,

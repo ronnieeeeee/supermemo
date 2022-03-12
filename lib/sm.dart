@@ -1,40 +1,41 @@
-import 'package:sm2/SmResponse.dart';
-
-class Sm {
-  SmResponse calc({
-    required int quality,
-    required int repetitions,
-    required int previousInterval,
-    required double previousEaseFactor,
-  }) {
-    int interval;
-    double easeFactor;
+class SM {
+  final double easeFactor;
+  final int repetitions;
+  final int interval;
+  SM([this.repetitions = 0, this.interval = 0, this.easeFactor = 2.5]);
+  SM calc(int quality) {
     if (quality >= 3) {
-      switch (repetitions) {
-        case 0:
-          interval = 1;
-          break;
-        case 1:
-          interval = 6;
-          break;
-        default:
-          interval = (previousInterval * previousEaseFactor).round();
-      }
-
-      repetitions++;
-      easeFactor = previousEaseFactor +
-          (0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02));
+      final int nextInterval = (() {
+        switch (repetitions) {
+          case 0:
+            return 1;
+          case 1:
+            return 6;
+          default:
+            return (interval * easeFactor).round();
+        }
+      })();
+      final nextRepetitions = repetitions + 1;
+      final double nextEaseFactor = _calcEaseFactor(easeFactor, quality);
+      return SM(nextRepetitions, nextInterval, nextEaseFactor);
     } else {
-      repetitions = 0;
-      interval = 1;
-      easeFactor = previousEaseFactor;
+      final int nextRepetitions = 0;
+      final int nextInterval = 1;
+      return SM(nextRepetitions, nextInterval, easeFactor);
     }
-
-    if (easeFactor < 1.3) {
-      easeFactor = 1.3;
-    }
-
-    return SmResponse(
-        interval: interval, repetitions: repetitions, easeFactor: easeFactor);
   }
+
+  double _calcEaseFactor(double previousEaseFactor, int quality) {
+    final easeFactor = previousEaseFactor +
+        (0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02));
+    final double lowerLimit = 1.3;
+    return easeFactor < lowerLimit ? lowerLimit : easeFactor;
+  }
+}
+
+class SmResult {
+  final int interval;
+  final int repetitions;
+  final double easeFactor;
+  SmResult(this.interval, this.repetitions, this.easeFactor);
 }
