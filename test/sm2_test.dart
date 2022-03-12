@@ -19,13 +19,12 @@ void main() {
   });
 
   test('Calc - quality: 5, repetitions: 2, interval: 6, factor: 1.3', () {
-    final sm = Sm();
-
-    SmResponse smResponse = sm.calc(
-        quality: 5,
-        repetitions: 2,
-        previousInterval: 6,
-        previousEaseFactor: 1.3);
+    final int quality = 5;
+    final int initRepetitions = 2;
+    final int initInterval = 6;
+    final double initEaseFactor = 1.3;
+    final sm = Smm(initRepetitions, initInterval, initEaseFactor);
+    final smResponse = sm.calc(quality);
 
     expect(smResponse.interval, 8);
     expect(smResponse.repetitions, 3);
