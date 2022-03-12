@@ -16,6 +16,48 @@ void main() {
     expect(smResponse.interval, 1);
     expect(smResponse.repetitions, 0);
     expect(smResponse.easeFactor, 2.5);
+
+    final originalSm = Sm();
+    SmResponse originalSmResponse = originalSm.calc(
+        quality: quality,
+        repetitions: initRepetitions,
+        previousInterval: initInterval,
+        previousEaseFactor: initEaseFactor);
+
+    expect(smResponse.interval, originalSmResponse.interval);
+    expect(smResponse.repetitions, originalSmResponse.repetitions);
+    expect(smResponse.easeFactor, originalSmResponse.easeFactor);
+
+    final quality2 = 5;
+    SmResponse originalSmResponse2 = originalSm.calc(
+        quality: quality2,
+        repetitions: originalSmResponse.repetitions,
+        previousInterval: originalSmResponse.interval,
+        previousEaseFactor: originalSmResponse.easeFactor);
+
+    final smResponse2 = Smm(initRepetitions, initInterval, initEaseFactor)
+        .calc(quality)
+        .calc(quality2);
+
+    expect(smResponse2.interval, originalSmResponse2.interval);
+    expect(smResponse2.repetitions, originalSmResponse2.repetitions);
+    expect(smResponse2.easeFactor, originalSmResponse2.easeFactor);
+
+    final quality3 = 5;
+    SmResponse originalSmResponse3 = originalSm.calc(
+        quality: quality3,
+        repetitions: originalSmResponse2.repetitions,
+        previousInterval: originalSmResponse2.interval,
+        previousEaseFactor: originalSmResponse2.easeFactor);
+
+    final smResponse3 = Smm(initRepetitions, initInterval, initEaseFactor)
+        .calc(quality)
+        .calc(quality2)
+        .calc(quality3);
+
+    expect(smResponse3.interval, originalSmResponse3.interval);
+    expect(smResponse3.repetitions, originalSmResponse3.repetitions);
+    expect(smResponse3.easeFactor, originalSmResponse3.easeFactor);
   });
 
   test('Calc - quality: 5, repetitions: 2, interval: 6, factor: 1.3', () {
