@@ -5,7 +5,7 @@ import 'package:sm2/smm.dart';
 
 void main() {
   test('Calc success', () {
-    final int quality = 0;
+    final int quality = 1;
     final int initRepetitions = 0;
     final int initInterval = 0;
     final double initEaseFactor = 2.5;
