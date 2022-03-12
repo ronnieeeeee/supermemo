@@ -5,13 +5,13 @@ import 'package:sm2/smm.dart';
 
 void main() {
   test('Calc success', () {
-    final sm = Sm();
+    final int quality = 0;
+    final int initRepetitions = 0;
+    final int initInterval = 0;
+    final double initEaseFactor = 2.5;
+    final sm = Smm(initRepetitions, initInterval, initEaseFactor);
 
-    SmResponse smResponse = sm.calc(
-        quality: 0,
-        repetitions: 0,
-        previousInterval: 0,
-        previousEaseFactor: 2.5);
+    final Smm smResponse = sm.calc(quality);
 
     expect(smResponse.interval, 1);
     expect(smResponse.repetitions, 0);
