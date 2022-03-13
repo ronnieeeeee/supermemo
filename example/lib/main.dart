@@ -20,7 +20,6 @@ class HomePage extends StatelessWidget {
   final sm = OriginalSm();
 
   @override
-  @override
   Widget build(BuildContext context) {
     SmResponse smResponse = sm.calc(
         quality: 0,
