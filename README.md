@@ -1,3 +1,58 @@
+# A spaced repetition algorithm(SM-2) implemented with dart.
+
+
+## Getting Started
+
+You just need to add `smmmmm2` as a dependency in your `pubspec.yaml` .
+
+
+```yaml
+dependencies:
+  smmmmm2: ^2.0.0
+```
+
+## Usage
+
+Lastly, we need to extend `Equatable`
+
+```dart
+import 'package:equatable/equatable.dart';
+
+    final int quality = 0;
+    final int initRepetitions = 0;
+    final int initInterval = 0;
+    final double initEaseFactor = 2.5;
+    final sm = SM(initRepetitions, initInterval, initEaseFactor);
+    final SM sm2 = sm.calc(quality);
+```
+
+```dart
+final int quality = 0;
+final int quality2 = 5;
+final int quality3 = 2;
+final SM sm2 = sm.calc(quality).calc(quality2).calc(quality3);
+```
+
+
+When working with json:
+
+```dart
+import 'package:equatable/equatable.dart';
+
+class Person extends Equatable {
+  const Person(this.name);
+
+  final String name;
+
+  @override
+  List<Object> get props => [name];
+
+  factory Person.fromJson(Map<String, dynamic> json) {
+    return Person(json['name']);
+  }
+}
+```
+
 Implementation of SM-2 in DART. 
 
 SM-2 is a simple spaced repetition algorithm. It calculates the number of days to wait before reviewing a piece of information based on how easily the information was remembered today.
