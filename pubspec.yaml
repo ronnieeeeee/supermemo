@@ -1,7 +1,7 @@
 name: sm2
 description: Simple spaced repetition algorithm. It calculates the number of days to wait before reviewing a piece of information based on how easily the the information was remembered today.
 homepage: https://github.com/ronnieeeeee/sm2
-version: 0.1.7
+version: 0.1.0
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
