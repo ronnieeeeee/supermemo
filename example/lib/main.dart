@@ -49,22 +49,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  double _easeFactor = 2.5;
   SM _sm = SM(0, 0, 2.5);
   int _quality = 3;
-  String _result = 'repetitions: 0, interval: 0, easeFactor, 2.5';
+  List<String> _results = [];
   final String _type = "quality";
 
-  void _calc() {
+  @override
+  void initState() {
+    _results = ['ready'];
+    _sm = SM(0, 0, _easeFactor);
+    super.initState();
+  }
+
+  void _reset() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _sm = _sm.calc(_quality);
-      _result =
-          'repetitions: ${_sm.repetitions}, interval: ${_sm.interval}, easeFactor, ${_sm.easeFactor}';
+      _results = ['ready'];
     });
   }
 
@@ -73,6 +73,18 @@ class _MyHomePageState extends State<MyHomePage> {
       _quality = quality;
     });
   }
+
+  void _calc() {
+    setState(() {
+      _sm = _sm.calc(_quality);
+      _results.add(
+          'repetitions: ${_sm.repetitions}, interval: ${_sm.interval}, easeFactor, ${_sm.easeFactor}');
+    });
+  }
+
+  void _changeSlider(double e) => setState(() {
+        _easeFactor = e;
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -112,61 +124,66 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: const EdgeInsets.all(18.0),
                 child: Text('SM2 Demo',
                     style: Theme.of(context).textTheme.headline2)),
-            Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: Text('quality: ${_quality.toString()}',
-                    style: Theme.of(context).textTheme.headline5)),
+            Text('quality: ${_quality.toString()}',
+                style: Theme.of(context).textTheme.headline5),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Expanded(
-                  child: RadioListTile(
-                title: Text("1"),
-                value: '1',
-                groupValue: _type,
-                onChanged: (_) => _setQuality(1),
-              )),
-              Expanded(
-                  child: RadioListTile(
-                title: Text("2"),
-                value: '2',
-                groupValue: _type,
-                onChanged: (_) => _setQuality(2),
-              )),
-              Expanded(
-                  child: RadioListTile(
-                title: Text("3"),
-                value: '3',
-                groupValue: _type,
-                onChanged: (_) => _setQuality(3),
-              )),
-              Expanded(
-                  child: RadioListTile(
-                title: Text("4"),
-                value: '4',
-                groupValue: _type,
-                onChanged: (_) => _setQuality(4),
-              )),
-              Expanded(
-                  child: RadioListTile(
-                title: Text("5"),
-                value: '5',
-                groupValue: _type,
-                onChanged: (_) => _setQuality(5),
-              ))
+              ElevatedButton(
+                onPressed: () => _setQuality(1),
+                child: const Text('1'),
+              ),
+              ElevatedButton(
+                onPressed: () => _setQuality(2),
+                child: const Text('2'),
+              ),
+              ElevatedButton(
+                onPressed: () => _setQuality(3),
+                child: const Text('3'),
+              ),
+              ElevatedButton(
+                onPressed: () => _setQuality(4),
+                child: const Text('4'),
+              ),
+              ElevatedButton(
+                onPressed: () => _setQuality(5),
+                child: const Text('5'),
+              ),
             ]),
-            Padding(
-                padding: const EdgeInsets.all(32.0),
-                child: Text(
-                  _result,
-                  style: Theme.of(context).textTheme.headline5,
-                )),
+            Text('easeFactor: ${_easeFactor}',
+                style: Theme.of(context).textTheme.headline5),
+            Slider(
+              label: '$_easeFactor',
+              min: 0.0,
+              max: 5.0,
+              value: _easeFactor,
+              activeColor: Colors.orange,
+              inactiveColor: Color.fromRGBO(68, 138, 255, 1),
+              divisions: 10,
+              onChanged: _changeSlider,
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              ElevatedButton(
+                onPressed: () => _calc(),
+                child: const Text('calc'),
+              ),
+              ElevatedButton(
+                onPressed: () => _reset(),
+                child: const Text('reset'),
+              )
+            ]),
+            Text('count : ${_results.length}',
+                style: Theme.of(context).textTheme.headline5),
+            Expanded(
+                child: Padding(
+                    padding: const EdgeInsets.all(32.0),
+                    child: ListView(
+                        children: _results
+                            .map((e) => Text(e,
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context).textTheme.headline6))
+                            .toList())))
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _calc,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
