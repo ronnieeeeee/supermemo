@@ -49,22 +49,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  double _easeFactor = 2.5;
   SM _sm = SM(0, 0, 2.5);
   int _quality = 3;
-  String _result = 'repetitions: 0, interval: 0, easeFactor, 2.5';
-  final String _type = "quality";
+  List<String> _results = [];
 
-  void _calc() {
+  @override
+  void initState() {
+    _results = [];
+    _sm = SM(0, 0, _easeFactor);
+    super.initState();
+  }
+
+  void _reset() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _sm = _sm.calc(_quality);
-      _result =
-          'repetitions: ${_sm.repetitions}, interval: ${_sm.interval}, easeFactor, ${_sm.easeFactor}';
+      _results = [];
+      _sm = SM(0, 0, _easeFactor);
     });
   }
 
@@ -73,6 +73,21 @@ class _MyHomePageState extends State<MyHomePage> {
       _quality = quality;
     });
   }
+
+  void _calc() {
+    setState(() {
+      _sm = _sm.calc(_quality);
+      _results.add(
+          'sm.calc($_quality) => repetitions: ${_sm.repetitions}, interval: ${_sm.interval}, easeFactor, ${double.parse(_sm.easeFactor.toStringAsFixed(1))}');
+    });
+  }
+
+  void _changeSlider(double e) => setState(() {
+        _easeFactor = double.parse(e.toStringAsFixed(1));
+      });
+
+  ElevatedButton _createButton(int quality) => ElevatedButton(
+      onPressed: () => _setQuality(quality), child: Text(quality.toString()));
 
   @override
   Widget build(BuildContext context) {
@@ -111,62 +126,71 @@ class _MyHomePageState extends State<MyHomePage> {
             Padding(
                 padding: const EdgeInsets.all(18.0),
                 child: Text('SM2 Demo',
-                    style: Theme.of(context).textTheme.headline2)),
-            Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: Text('quality: ${_quality.toString()}',
-                    style: Theme.of(context).textTheme.headline5)),
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Expanded(
-                  child: RadioListTile(
-                title: Text("1"),
-                value: '1',
-                groupValue: _type,
-                onChanged: (_) => _setQuality(1),
-              )),
-              Expanded(
-                  child: RadioListTile(
-                title: Text("2"),
-                value: '2',
-                groupValue: _type,
-                onChanged: (_) => _setQuality(2),
-              )),
-              Expanded(
-                  child: RadioListTile(
-                title: Text("3"),
-                value: '3',
-                groupValue: _type,
-                onChanged: (_) => _setQuality(3),
-              )),
-              Expanded(
-                  child: RadioListTile(
-                title: Text("4"),
-                value: '4',
-                groupValue: _type,
-                onChanged: (_) => _setQuality(4),
-              )),
-              Expanded(
-                  child: RadioListTile(
-                title: Text("5"),
-                value: '5',
-                groupValue: _type,
-                onChanged: (_) => _setQuality(5),
-              ))
-            ]),
-            Padding(
-                padding: const EdgeInsets.all(32.0),
-                child: Text(
-                  _result,
-                  style: Theme.of(context).textTheme.headline5,
+                    style: Theme.of(context).textTheme.headline4)),
+            const SizedBox(height: 10),
+            Text('Init easeFactor: ${_easeFactor.toStringAsFixed(1)}',
+                style: Theme.of(context).textTheme.headline5),
+            Slider(
+              label: '$_easeFactor',
+              min: 1.3,
+              max: 5.0,
+              value: _easeFactor,
+              onChanged: _changeSlider,
+            ),
+            const SizedBox(height: 5),
+            Text('final SM sm = SM(0,0,$_easeFactor);'),
+            const SizedBox(height: 40),
+            Text('Learn quality: ${_quality.toString()}',
+                style: Theme.of(context).textTheme.headline5),
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: List<Widget>.generate(
+                    5, (index) => _createButton(index + 1)).toList()),
+            const SizedBox(height: 5),
+            Text('sm.calc($_quality);'),
+            const SizedBox(height: 40),
+            SizedBox(
+                height: 40,
+                width: 300,
+                child: ElevatedButton(
+                    onPressed: () => _calc(),
+                    child: const Text('Calculation',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18)))),
+            const SizedBox(height: 24),
+            SizedBox(
+                height: 40,
+                width: 300,
+                child: ElevatedButton(
+                  onPressed: () => _reset(),
+                  child: const Text('clear log'),
                 )),
+            Expanded(
+                child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: ListView(
+                        children: [
+                      Text(
+                        'Log',
+                        style: Theme.of(context).textTheme.headline5,
+                        textAlign: TextAlign.center,
+                      ),
+                      Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Text(
+                            'ready: final SM sm = SM(0,0,$_easeFactor);',
+                            textAlign: TextAlign.center,
+                          )),
+                      ..._results.map((e) => Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Text(
+                            e,
+                            textAlign: TextAlign.center,
+                          )))
+                    ].toList())))
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _calc,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
