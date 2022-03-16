@@ -1,7 +1,7 @@
 name: supermemo
 description: Simple spaced repetition algorithm. It calculates the number of days to wait before reviewing a piece of information based on how easily the the information was remembered today.
 homepage: https://github.com/ronnieeeeee/supermemo
-version: 0.0.1
+version: 0.0.3
 
 environment:
   sdk: ">=2.12.0 <3.0.0"

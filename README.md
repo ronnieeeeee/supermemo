@@ -22,7 +22,7 @@ You just need to add `supermemo` as a dependency in your `pubspec.yaml` .
 
 ```yaml
 dependencies:
-  supermemo: 0.0.1
+  supermemo: 0.0.3
 ```
 
 # **Usage**
