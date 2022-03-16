@@ -1,6 +1,8 @@
 ## 0.0.4
 
-* Documentation update, nothing else## 0.0.3
+* Documentation update, nothing else
+
+## 0.0.3
 
 * Documentation update, nothing else
 
