@@ -85,9 +85,36 @@ class _MyHomePageState extends State<MyHomePage> {
   void _changeSlider(double e) => setState(() {
         _easeFactor = double.parse(e.toStringAsFixed(1));
       });
+  String _qualityToEvaluateText(int quality) {
+    String? evaluateText;
+    switch (quality) {
+      case 1:
+        evaluateText = "Poor";
+        break;
+      case 2:
+        evaluateText = "Average";
+        break;
+      case 3:
+        evaluateText = "Good";
+        break;
+      case 4:
+        evaluateText = "VeryGood";
+        break;
+      case 5:
+        evaluateText = "Excellent";
+        break;
+    }
+    return evaluateText!;
+  }
 
-  ElevatedButton _createButton(int quality) => ElevatedButton(
-      onPressed: () => _setQuality(quality), child: Text(quality.toString()));
+  Widget _createButton(int quality) => Container(
+      margin: EdgeInsets.only(top: 6),
+      child: SizedBox(
+          height: 35,
+          width: 300,
+          child: ElevatedButton(
+              onPressed: () => _setQuality(quality),
+              child: Text(_qualityToEvaluateText(quality)))));
 
   @override
   Widget build(BuildContext context) {
@@ -104,93 +131,96 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: Text('SM2 Demo',
-                    style: Theme.of(context).textTheme.headline4)),
-            const SizedBox(height: 10),
-            Text('Init easeFactor: ${_easeFactor.toStringAsFixed(1)}',
-                style: Theme.of(context).textTheme.headline5),
-            Slider(
-              label: '$_easeFactor',
-              min: 1.3,
-              max: 5.0,
-              value: _easeFactor,
-              onChanged: _changeSlider,
-            ),
-            const SizedBox(height: 5),
-            Text('final SM sm = SM(0,0,$_easeFactor);'),
-            const SizedBox(height: 40),
-            Text('Learn quality: ${_quality.toString()}',
-                style: Theme.of(context).textTheme.headline5),
-            Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: List<Widget>.generate(
-                    5, (index) => _createButton(index + 1)).toList()),
-            const SizedBox(height: 5),
-            Text('sm.calc($_quality);'),
-            const SizedBox(height: 40),
-            SizedBox(
-                height: 40,
-                width: 300,
-                child: ElevatedButton(
-                    onPressed: () => _calc(),
-                    child: const Text('Calculation',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18)))),
-            const SizedBox(height: 24),
-            SizedBox(
-                height: 40,
-                width: 300,
-                child: ElevatedButton(
-                  onPressed: () => _reset(),
-                  child: const Text('clear log'),
-                )),
-            Expanded(
-                child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: ListView(
-                        children: [
-                      Text(
-                        'Log',
-                        style: Theme.of(context).textTheme.headline5,
-                        textAlign: TextAlign.center,
-                      ),
-                      Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text(
-                            'ready: final SM sm = SM(0,0,$_easeFactor);',
-                            textAlign: TextAlign.center,
-                          )),
-                      ..._results.map((e) => Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text(
-                            e,
-                            textAlign: TextAlign.center,
-                          )))
-                    ].toList())))
-          ],
-        ),
-      ),
+          // Center is a layout widget. It takes a single child and positions it
+          // in the middle of the parent.
+          child: Container(
+              height: MediaQuery.of(context).size.height,
+              child: Column(
+                // Column is also a layout widget. It takes a list of children and
+                // arranges them vertically. By default, it sizes itself to fit its
+                // children horizontally, and tries to be as tall as its parent.
+                //
+                // Invoke "debug painting" (press "p" in the console, choose the
+                // "Toggle Debug Paint" action from the Flutter Inspector in Android
+                // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+                // to see the wireframe for each widget.
+                //
+                // Column has various properties to control how it sizes itself and
+                // how it positions its children. Here we use mainAxisAlignment to
+                // center the children vertically; the main axis here is the vertical
+                // axis because Columns are vertical (the cross axis would be
+                // horizontal).
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                      padding: const EdgeInsets.all(18.0),
+                      child: Text('SM2 Demo',
+                          style: Theme.of(context).textTheme.headline5)),
+                  const SizedBox(height: 10),
+                  Text('Init easeFactor: ${_easeFactor.toStringAsFixed(1)}',
+                      style: Theme.of(context).textTheme.headline6),
+                  Slider(
+                    label: '$_easeFactor',
+                    min: 1.3,
+                    max: 5.0,
+                    value: _easeFactor,
+                    onChanged: _changeSlider,
+                  ),
+                  const SizedBox(height: 5),
+                  Text('final SM sm = SM(0,0,$_easeFactor);'),
+                  const SizedBox(height: 20),
+                  Text('Quality, sm.calc($_quality);',
+                      style: Theme.of(context).textTheme.headline6),
+                  Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: List<Widget>.generate(
+                              5, (index) => _createButton(index + 1))
+                          .reversed
+                          .toList()),
+                  const SizedBox(height: 20),
+                  SizedBox(
+                      height: 35,
+                      width: 300,
+                      child: ElevatedButton(
+                          onPressed: () => _calc(),
+                          child: const Text('Calculation',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 18)))),
+                  const SizedBox(height: 6),
+                  SizedBox(
+                      height: 35,
+                      width: 300,
+                      child: ElevatedButton(
+                        onPressed: () => _reset(),
+                        child: const Text('clear log'),
+                      )),
+                  Expanded(
+                      child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: ListView(
+                              children: [
+                            Text(
+                              'Log',
+                              style: Theme.of(context).textTheme.headline5,
+                              textAlign: TextAlign.center,
+                            ),
+                            Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 10, left: 20),
+                                child: Text(
+                                  'ready: final SM sm = SM(0,0,$_easeFactor);',
+                                  textAlign: TextAlign.left,
+                                )),
+                            ..._results.map((e) => Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 5, left: 20),
+                                child: Text(
+                                  e,
+                                  textAlign: TextAlign.left,
+                                )))
+                          ].toList())))
+                ],
+              ))),
     );
   }
 }
