@@ -12,7 +12,7 @@ Suggestions for improvements in implementation and API design are always welcome
 ## [**Demo**](https://sm2demo-281a2.firebaseapp.com/#/)
 
 <div align="center">
-<img src="./supermemo.gif" alt="sm2" title="sm2">
+<img src="https://raw.githubusercontent.com/ronnieeeeee/supermemo/main/supermemo.gif" alt="sm2" title="sm2">
 </div>
 
 ## **Getting Started**
