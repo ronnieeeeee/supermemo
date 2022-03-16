@@ -2,15 +2,14 @@
 
 ## This package was created by forking [sm2](https://github.com/thyagoluciano/sm2).
 
+### Suggestions for improvements in implementation and API design are always welcome! Please feel free to [open the issue](https://github.com/ronnieeeeee/sm2/issues/new).
 
+## [Demo](https://sm2demo-281a2.firebaseapp.com/#/)
 
 <div align="center">
 <img src="./sm2demo.gif" alt="sm2" title="sm2">
 </div>
 
-
-
-## [demo](https://sm2demo-281a2.firebaseapp.com/#/)
 ## Getting Started
 
 You just need to add `smmmmm2` as a dependency in your `pubspec.yaml` .
