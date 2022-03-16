@@ -12,24 +12,24 @@ Suggestions for improvements in implementation and API design are always welcome
 ## [**Demo**](https://sm2demo-281a2.firebaseapp.com/#/)
 
 <div align="center">
-<img src="./sm2demo.gif" alt="sm2" title="sm2">
+<img src="./supermemo.gif" alt="sm2" title="sm2">
 </div>
 
 ## **Getting Started**
 
-You just need to add `smmmmm2` as a dependency in your `pubspec.yaml` .
+You just need to add `supermemo` as a dependency in your `pubspec.yaml` .
 
 
 ```yaml
 dependencies:
-  smmmmm2: ^2.0.0
+  supermemo: ^2.0.0
 ```
 
 ## **Usage**
 
 
 ```dart
-import 'package:smmmmm2/smmmmm2.dart';
+import 'package:supermemo/supermemo.dart';
 
 final int quality = 0;
 final int initRepetitions = 0;
