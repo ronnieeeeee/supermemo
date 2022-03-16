@@ -2,15 +2,20 @@
 
 ## This package was created by forking [sm2](https://github.com/thyagoluciano/sm2).
 
-### Suggestions for improvements in implementation and API design are always welcome! Please feel free to [open the issue](https://github.com/ronnieeeeee/sm2/issues/new).
+Suggestions for improvements in implementation and API design are always welcome!
 
-## [Demo](https://sm2demo-281a2.firebaseapp.com/#/)
+**Please feel free to [open the issue](https://github.com/ronnieeeeee/supermemo/issues/new).**
+
+
+#### And I am currently working on developing supermemo with flutter_hooks.
+
+## [**Demo**](https://sm2demo-281a2.firebaseapp.com/#/)
 
 <div align="center">
 <img src="./sm2demo.gif" alt="sm2" title="sm2">
 </div>
 
-## Getting Started
+## **Getting Started**
 
 You just need to add `smmmmm2` as a dependency in your `pubspec.yaml` .
 
@@ -20,7 +25,7 @@ dependencies:
   smmmmm2: ^2.0.0
 ```
 
-## Usage
+## **Usage**
 
 
 ```dart
@@ -41,7 +46,8 @@ It may good usecase "state management".
 final SM sm2 = sm.calc(quality);
 sm2.calc(quality2).calc(quality3);
 
-//use flutter_hooks
+//I designed the SM object to be used from some kind of state management system.
+
 state = useState(sm);
 state.value.calc(quality);
 ```

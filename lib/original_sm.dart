@@ -1,4 +1,4 @@
-import 'package:sm2/sm_response.dart';
+import 'package:supermemo/sm_response.dart';
 
 class OriginalSm {
   SmResponse calc({

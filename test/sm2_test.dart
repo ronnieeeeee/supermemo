@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sm2/sm_response.dart';
-import 'package:sm2/original_sm.dart';
-import 'package:sm2/sm.dart';
+import 'package:supermemo/sm_response.dart';
+import 'package:supermemo/original_sm.dart';
+import 'package:supermemo/supermemo.dart';
 
 void main() {
   test('Calc success', () {

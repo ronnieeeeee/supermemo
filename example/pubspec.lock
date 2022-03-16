@@ -114,13 +114,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
-  sm2:
-    dependency: "direct main"
-    description:
-      path: ".."
-      relative: true
-    source: path
-    version: "0.1.0"
   source_span:
     dependency: transitive
     description:
@@ -149,6 +142,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
+  supermemo:
+    dependency: "direct main"
+    description:
+      path: ".."
+      relative: true
+    source: path
+    version: "0.1.0"
   term_glyph:
     dependency: transitive
     description:
