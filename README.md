@@ -2,7 +2,7 @@
 
 ### This package was created by forking [sm2](https://github.com/thyagoluciano/sm2).
 
-## **Suggestions for improvements in implementation and API design are always welcome👍
+## Suggestions for improvements in implementation and API design are always welcome👍
 
 Please feel free to [open the issue](https://github.com/ronnieeeeee/supermemo/issues/new).
 
@@ -22,7 +22,7 @@ You just need to add `supermemo` as a dependency in your `pubspec.yaml` .
 
 ```yaml
 dependencies:
-  supermemo: 0.0.1
+  supermemo: 0.0.4
 ```
 
 # **Usage**
