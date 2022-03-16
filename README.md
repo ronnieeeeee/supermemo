@@ -55,7 +55,7 @@ state.value.calc(quality);
 # Links
 
 * [Spaced repetition on Wikipedia](https://en.wikipedia.org/wiki/Spaced_repetition)
-* [Official algorithm description](http://www.supermemo.com/english/ol/sm2.htm)
+* [Official algorithm description](https://www.supermemo.com/en/archives1990-2015/english/ol/sm2)
 * [Official implementation of SM-2 algorithm in SuperMemo 2](http://www.supermemo.com/english/ol/sm2source.htm)
 * http://www.supermemo.com
 * http://www.supermemo.eu
