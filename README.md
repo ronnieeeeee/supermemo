@@ -1,21 +1,21 @@
 # A spaced repetition algorithm(SM-2) implemented with dart.
 
-## This package was created by forking [sm2](https://github.com/thyagoluciano/sm2).
+### This package was created by forking [sm2](https://github.com/thyagoluciano/sm2).
 
-Suggestions for improvements in implementation and API design are always welcome!
+## **Suggestions for improvements in implementation and API design are always welcome👍
 
-**Please feel free to [open the issue](https://github.com/ronnieeeeee/supermemo/issues/new).**
+Please feel free to [open the issue](https://github.com/ronnieeeeee/supermemo/issues/new).
 
 
-#### And I am currently working on developing supermemo with flutter_hooks.
+And I am currently working on developing supermemo with flutter_hooks.
 
-## [**Demo**](https://sm2demo-281a2.firebaseapp.com/#/)
+# [**Demo**](https://sm2demo-281a2.firebaseapp.com/#/)
 
 <div align="center">
 <img src="https://raw.githubusercontent.com/ronnieeeeee/supermemo/main/supermemo.gif" alt="sm2" title="sm2">
 </div>
 
-## **Getting Started**
+# **Getting Started**
 
 You just need to add `supermemo` as a dependency in your `pubspec.yaml` .
 
@@ -25,7 +25,7 @@ dependencies:
   supermemo: 0.0.1
 ```
 
-## **Usage**
+# **Usage**
 
 
 ```dart
@@ -60,7 +60,9 @@ state.value.calc(quality);
 * http://www.supermemo.com
 * http://www.supermemo.eu
 
-# The algorithm requires four inputs
+## A brief description of the SM-2 algorithm.
+
+### The algorithm requires four inputs
 
 The algorithm requires four inputs: `quality`, `repetitions`, `previous ease factor`, and `previous interval`. The last three inputs are taken from the output of a previous call to SM-2. (On the first call, default values are used.)
 
