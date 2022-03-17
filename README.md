@@ -22,7 +22,7 @@ You just need to add `supermemo` as a dependency in your `pubspec.yaml` .
 
 ```yaml
 dependencies:
-  supermemo: 0.0.4
+  supermemo: 0.0.5
 ```
 
 # **Usage**
@@ -56,9 +56,9 @@ state.value.calc(quality);
 
 * [Spaced repetition on Wikipedia](https://en.wikipedia.org/wiki/Spaced_repetition)
 * [Official algorithm description](https://www.supermemo.com/en/archives1990-2015/english/ol/sm2)
-* [Official implementation of SM-2 algorithm in SuperMemo 2](http://www.supermemo.com/english/ol/sm2source.htm)
-* http://www.supermemo.com
-* http://www.supermemo.eu
+* [Official implementation of SM-2 algorithm in SuperMemo 2](https://www.supermemo.com/en/archives1990-2015/english/ol/sm2source)
+* https://www.supermemo.com
+* https://www.supermemo.eu
 
 ## A brief description of the SM-2 algorithm.
 
